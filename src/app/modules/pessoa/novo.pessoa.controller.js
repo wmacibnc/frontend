@@ -1,9 +1,9 @@
 (function(){
-
-  angular.module('app').controller('CadastrarPessoaController', 
-    ['pessoaService','$http', '$state','$mdToast', CadastrarPessoaController]
-    );
-
+  
+  angular.module('pessoa').controller('CadastrarPessoaController', 
+  ['pessoaService','$http', '$state','$mdToast', CadastrarPessoaController]
+  );
+  
   function CadastrarPessoaController(pessoaService, $http, $state, $mdToast) {
     var vm = this;
     
@@ -11,18 +11,14 @@
     var parametros = $state.params;
     vm.pessoa = parametros.pessoa || {};
     vm.isDetalhar = parametros.isDetalhar || false;
-
+    
     // Metodos
     vm.obterCep = obterCep;
     vm.salvar = salvar;
-
+    
     // Variaveis
     vm.dados = [];
-
-    pessoaService.consultar().then(function(dados) {
-      vm.dados = [].concat(dados);
-    });
-
+    
     function obterCep(){
       if(vm.endereco.cep && vm.endereco.cep.length == 8){
         $http({
@@ -37,14 +33,17 @@
         });
       }
     }
-
+    
     function salvar(){
-      $mdToast.show($mdToast.simple().content("Salvo com sucesso!").hideDelay(2000).position('bottom right'));
-      $state.go('pessoa.consultar');
+      pessoaService.salvar(vm.pessoa).then(function a(res){
+        $mdToast.show($mdToast.simple().content("Salvo com sucesso!").hideDelay(2000).position('top left'));
+        pessoaService.consultar().then(function abc(dados) {
+          vm.dados = [].concat(dados.data);
+          $state.go('pessoa.consultar');
+        });
+      });
     }
-
+    
   }
-
-
-
+  
 })();

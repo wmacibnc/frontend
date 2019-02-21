@@ -2,7 +2,7 @@
 
 angular.module('angularMaterialAdmin', ['app'])
 
-  .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider, $mdToastProvider) {
 
     $stateProvider
       .state('home', {
