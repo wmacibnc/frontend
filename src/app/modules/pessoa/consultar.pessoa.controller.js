@@ -11,8 +11,8 @@
 
     vm.dados = [];
 
-    pessoaService.consultar().then(function(dados) {
-        vm.dados = [].concat(dados);
+    pessoaService.consultar().then(function abc(dados) {
+        vm.dados = [].concat(dados.data);
     });
 
     function excluir(item){

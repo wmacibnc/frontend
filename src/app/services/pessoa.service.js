@@ -1,19 +1,21 @@
 (function(){
   'use strict';
 
-  angular.module('app').service('pessoaService', ['$q',consultar]);
+  angular.module('app').service('pessoaService', ['$http', pessoaService]);
 
-  function consultar($q){
-    var todos = [
-      {nome: 'João da Silva Lima Pereira da Costa', dataNascimento: new Date()},
-      {nome: 'Pedro da Costa Henrique Franco Franquês', dataNascimento: new Date()},
-      {nome: 'Fernanda Lima', dataNascimento: new Date()}
-    ];
+  function pessoaService($http){
 
-    return {
-      consultar : function() {
-        return $q.when(todos);
-      }
-    };
+  function consultar(){
+    return $http.get('http://localhost:8080/pessoa/consultar');
   }
-})();
+
+  return {
+    consultar : consultar
+  };
+  
+}
+
+  
+})
+
+();

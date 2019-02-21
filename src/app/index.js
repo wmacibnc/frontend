@@ -1,10 +1,9 @@
 'use strict';
 
-angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
-  'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app' , 'md.data.table'])
+angular.module('angularMaterialAdmin', ['app'])
 
-  .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider,
-                    $mdIconProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider) {
+
     $stateProvider
       .state('home', {
         url: '',
@@ -46,37 +45,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
         data: {
           title: 'Table'
         }
-      })
-      .state('pessoa', {
-        url: '/pessoa',
-        templateUrl: 'app/views/main.html',
-        controller: 'MainController',
-        controllerAs: 'vm',
-        abstract: true
-      })
-      .state('pessoa.consultar', {
-        url: '/consultar',
-        templateUrl: 'app/modules/consultar.pessoa.html',
-        controller: 'ConsultarPessoaController',
-        controllerAs: 'vm',
-        data: {
-          title: 'Pessoas'
-        }
-      })
-      .state('pessoa.novo', {
-        url: '/novo',
-        templateUrl: 'app/modules/novo.pessoa.html',
-        controller: 'CadastrarPessoaController',
-        controllerAs: 'vm',
-        data: {
-          title: 'Cadastrar Pessoa'
-        },
-        params: {
-          isDetalhar: false,
-          pessoa: {}
-        }
-      })
-      ;
+      });
 
     $urlRouterProvider.otherwise('/dashboard');
 
