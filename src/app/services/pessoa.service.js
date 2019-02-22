@@ -1,22 +1,22 @@
 (function(){
   'use strict';
 
-  angular.module('app').service('pessoaService', ['$http', pessoaService]);
+  angular.module('app').service('pessoaService', ['$http','api', pessoaService]);
 
-  function pessoaService($http){
+  function pessoaService($http, api){
 
-  const api = 'http://localhost:8080/pessoa';
+  const base = api + '/pessoa';
 
   function consultar(){
-    return $http.get(api + '/consultar');
+    return $http.get(base + '/consultar');
   }
 
   function salvar(obj){
-    return $http.post(api + '/salvar', obj);
+    return $http.post(base + '/salvar', obj);
   }
 
   function excluir(id){
-    return $http.delete(api + '/excluir', {params: {numeroPessoa:id}});
+    return $http.delete(base + '/excluir', {params: {numeroPessoa:id}});
   }
 
   return {
